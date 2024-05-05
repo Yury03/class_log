@@ -7,10 +7,12 @@ data class Subject(
     val id: Int,
     val title: String,
 )
-
+/**
+ *  Связь с [SchoolClasses]
+ *  */
 object Subjects : Table() {
-    val id = Students.integer("id").autoIncrement()
+    val id = integer("id").autoIncrement()
     val title = varchar("title", 64)
-    val classId = reference("class_id", SchoolClasses.id, onDelete = ReferenceOption.CASCADE)
-    override val primaryKey = PrimaryKey(Users.id)
+    val classId = reference("class_id", SchoolClasses.id)
+    override val primaryKey = PrimaryKey(id)
 }

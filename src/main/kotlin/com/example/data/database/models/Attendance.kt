@@ -9,7 +9,9 @@ data class Attendance(
     val grade: Int,
     val isPresence: Boolean,
 )
-
+/**
+ *  Связь с [Students], [Schedules], [Subjects].
+ *  */
 object Attendances : Table() {
     val id = integer("id").autoIncrement()
     val comment = varchar("comment", 128)
@@ -18,5 +20,5 @@ object Attendances : Table() {
     val studentId = reference("student_id", Students.id, onDelete = ReferenceOption.CASCADE)
     val scheduleId = reference("schedule_id", Schedules.id, onDelete = ReferenceOption.CASCADE)
     val subjectId = reference("subject_id", Subjects.id, onDelete = ReferenceOption.CASCADE)
-    override val primaryKey = PrimaryKey(Users.id)
+    override val primaryKey = PrimaryKey(id)
 }

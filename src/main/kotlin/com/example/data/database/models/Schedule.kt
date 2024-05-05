@@ -7,10 +7,12 @@ data class Schedule(
     val id: Int,
     val weekDay: Int, //пн - 1, вс - 7
 )
-
+/**
+ *  Связь с [Users]
+ *  */
 object Schedules : Table() {
     val id = integer("id").autoIncrement()
     val weekDay = integer("week_day")
     val userId = reference("user_id", Users.id, onDelete = ReferenceOption.CASCADE)
-    override val primaryKey = PrimaryKey(Users.id)
+    override val primaryKey = PrimaryKey(id)
 }

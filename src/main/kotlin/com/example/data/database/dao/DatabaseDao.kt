@@ -38,9 +38,13 @@ interface DatabaseDao {
 
     interface UsersDao {
         suspend fun allUsers(): List<User>
-//        suspend fun editPasswordHash(newPasswordHash: String): Boolean
-//        suspend fun addNewUser(email: String, fullName: String, passwordHash: String): User
+        suspend fun addNewUser(email: String, fullName: String, password: String): User?
+        suspend fun editPassword(id: Int, newPassword: String): Boolean
     }
 
+    interface KeysDao {
+        suspend fun addNewKey(userId: Int): Key?
+        suspend fun deleteKey(userId: Int): Boolean
+    }
 
 }

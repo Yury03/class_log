@@ -14,7 +14,9 @@ data class User(
     @SerialName("password_hash")
     val passwordHash: String,
 )
-
+/**
+ *  Не имеет связей
+ *  */
 object Users : Table() {
     val id = integer("id").autoIncrement()
     val email = varchar("email", 128)

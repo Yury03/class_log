@@ -8,9 +8,12 @@ data class SchoolClass(
     val className: String,
 )
 
+/**
+ *  Связь с [Users]
+ *  */
 object SchoolClasses : Table() {
     val id = integer("id").autoIncrement()
     val className = varchar("class_name", 64)
     val classTeacherId = reference("class_teacher_id", Users.id, onDelete = ReferenceOption.CASCADE)
-    override val primaryKey = PrimaryKey(Lessons.id)
+    override val primaryKey = PrimaryKey(id)
 }

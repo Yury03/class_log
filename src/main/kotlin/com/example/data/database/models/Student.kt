@@ -9,10 +9,13 @@ data class Student(
     val phoneNumber: Long,
 )
 
+/**
+ *  Не имеет связей
+ *  */
 object Students : Table() {
     val id = integer("id").autoIncrement()
     val fullName = varchar("full_name", 64)
     val parentPhoneNumber = long("parent_phone_number")
     val phoneNumber = long("phone_number")
-    override val primaryKey = PrimaryKey(Users.id)
+    override val primaryKey = PrimaryKey(id)
 }
