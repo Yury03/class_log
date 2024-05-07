@@ -1,6 +1,6 @@
 package com.example.server
 
-import com.example.data.database.dao.DatabaseSingleton
+import com.example.data.database.DatabaseSingleton
 import com.example.server.plugins.configureRouting
 import com.example.server.plugins.configureSerialization
 import io.ktor.server.application.*

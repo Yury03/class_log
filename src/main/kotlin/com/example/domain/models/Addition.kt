@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
 data class Addition(
     val email: String,
     val password: String,
-    val fullName: String,
+    @SerialName("full_name") val fullName: String,
     @SerialName("server_key") val serverKey: String,
 )

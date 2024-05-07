@@ -1,6 +1,6 @@
 package com.example.data.database.dao.impl
 
-import com.example.data.database.dao.DatabaseSingleton.dbQuery
+import com.example.data.database.DatabaseSingleton.dbQuery
 import com.example.data.database.dao.DatabaseDao
 import com.example.data.database.models.Lesson
 import com.example.data.database.models.Lessons

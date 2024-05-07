@@ -1,4 +1,4 @@
-package com.example.data.database.dao
+package com.example.data.database
 
 import com.example.data.database.models.*
 import kotlinx.coroutines.Dispatchers

@@ -1,6 +1,6 @@
 package com.example.data.database.dao.impl
 
-import com.example.data.database.dao.DatabaseSingleton
+import com.example.data.database.DatabaseSingleton
 import com.example.data.database.dao.DatabaseDao
 import com.example.data.database.models.Schedule
 import com.example.data.database.models.Schedules

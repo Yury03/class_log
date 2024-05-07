@@ -5,5 +5,5 @@ import com.example.data.database.dao.impl.UsersDaoImpl
 import com.example.domain.models.LogIn
 
 class Authentication(private val impl: UsersDaoImpl) {
-    suspend operator fun invoke(logIn: LogIn) = authentication(logIn.email, logIn.password)
+    suspend operator fun invoke(logIn: LogIn) = authentication(impl, logIn.email, logIn.password)
 }

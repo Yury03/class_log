@@ -1,12 +1,11 @@
 package com.example.data.database.dao.impl
 
 import com.example.data.database.dao.DatabaseDao
-import com.example.data.database.dao.DatabaseSingleton.dbQuery
+import com.example.data.database.DatabaseSingleton.dbQuery
 import com.example.data.database.models.User
 import com.example.data.database.models.Users
 import com.example.data.database.utils.hashPassword
 import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.transactions.transaction
 
 class UsersDaoImpl : DatabaseDao.UsersDao {
     private fun resultRowToArticle(row: ResultRow) = User(
