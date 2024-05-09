@@ -1,6 +1,8 @@
-package com.example
+package com.example.server
 
-import com.example.plugins.*
+import com.example.data.database.DatabaseSingleton
+import com.example.server.plugins.configureRouting
+import com.example.server.plugins.configureSerialization
 import io.ktor.server.application.*
 import io.ktor.server.cio.*
 import io.ktor.server.engine.*
@@ -11,6 +13,7 @@ fun main() {
 }
 
 fun Application.module() {
-    configureSecurity()
+    DatabaseSingleton.init()
+    configureSerialization()
     configureRouting()
 }
