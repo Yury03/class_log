@@ -14,7 +14,7 @@ data class Key(
  *  */
 object Keys : Table() {
     val id = integer("id").autoIncrement()
-    val key = varchar("key", 32)
+    val key = varchar("key", 64)
     val validity = long("validity")
     val userId = reference("user_id", Users.id, onDelete = ReferenceOption.CASCADE)
     override val primaryKey = PrimaryKey(id)

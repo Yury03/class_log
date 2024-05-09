@@ -11,7 +11,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 object DatabaseSingleton {
     fun init() {
         val driverClassName = "org.h2.Driver"
-        val jdbcURL = "jdbc:h2:~/Desktop/debugDatabase"
+        val jdbcURL = "jdbc:h2:~/debugClassLog/database"
         val database = Database.connect(jdbcURL, driverClassName)
         transaction(database) {
             SchemaUtils.create(Users, Students)
