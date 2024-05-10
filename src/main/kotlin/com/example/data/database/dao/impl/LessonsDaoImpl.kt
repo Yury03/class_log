@@ -1,14 +1,14 @@
 package com.example.data.database.dao.impl
 
 import com.example.data.database.DatabaseSingleton.dbQuery
-import com.example.data.database.dao.DatabaseDao
+import com.example.data.database.dao.DatabaseDao.LessonsDao
 import com.example.data.database.models.Lesson
 import com.example.data.database.models.Lessons
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.selectAll
 
-class LessonsDaoImpl : DatabaseDao.LessonsDao {
-    private fun resultRowToArticle(row: ResultRow) = Lesson(
+class LessonsDaoImpl : LessonsDao {
+    private fun mapToNotification(row: ResultRow) = Lesson(
         id = row[Lessons.id],
         audience = row[Lessons.audience],
         startTime = row[Lessons.startTime],
@@ -17,7 +17,7 @@ class LessonsDaoImpl : DatabaseDao.LessonsDao {
     )
 
     override suspend fun allLessons(): List<Lesson> = dbQuery {
-        Lessons.selectAll().map(::resultRowToArticle)
+        Lessons.selectAll().map(::mapToNotification)
     }
 
 //    override suspend fun lesson(id: Int): Lesson? = dbQuery {

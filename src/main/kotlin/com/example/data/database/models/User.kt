@@ -14,6 +14,7 @@ data class User(
     @SerialName("password_hash")
     val passwordHash: String,
 )
+
 /**
  *  Не имеет связей
  *  */

@@ -1,12 +1,12 @@
 package com.example.data.database.models
 
-import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.Table
 
 data class Subject(
     val id: Int,
     val title: String,
 )
+
 /**
  *  Связь с [SchoolClasses]
  *  */

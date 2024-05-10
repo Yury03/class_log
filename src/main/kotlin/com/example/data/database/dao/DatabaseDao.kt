@@ -22,6 +22,7 @@ interface DatabaseDao {
 
     interface ScheduleDao {
         suspend fun allSchedule(): List<Schedule>
+        suspend fun getWeekScheduleByUserId(userId: Int): List<Schedule>
     }
 
     interface SchoolClassesDao {
@@ -40,10 +41,11 @@ interface DatabaseDao {
         suspend fun allUsers(): List<User>
         suspend fun addNewUser(email: String, fullName: String, password: String, isClassTeacher: Boolean): User?
         suspend fun editPassword(id: Int, newPassword: String): Boolean
+        suspend fun getUserIdWithAuthentication(email: String, inputPassword: String): Int?
     }
 
     interface KeysDao {
-        suspend fun addNewKey(userId: Int): Key?
+        suspend fun getKeyByUserId(userId: Int): Key?
         suspend fun deleteKey(userId: Int): Boolean
     }
 

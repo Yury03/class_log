@@ -18,12 +18,14 @@ fun Application.configureRouting() {
             addNewUserHandler()
         }
         get("/schedule") {
-            call.respondText("this is schedule")
+
         }
         get("/schedule/myClass") {
             call.respondText("this is shedule for your class")
         }
     }
 }
+
+
 
 

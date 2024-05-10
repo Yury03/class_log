@@ -9,6 +9,7 @@ data class Attendance(
     val grade: Int,
     val isPresence: Boolean,
 )
+
 /**
  *  Связь с [Students], [Schedules], [Subjects].
  *  */
