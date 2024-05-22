@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
  * Ответ: ключ авторизации (String)
  * */
 @Serializable
-data class LogIn(
+data class LogInPost(
     val email: String,
     val password: String,
 )

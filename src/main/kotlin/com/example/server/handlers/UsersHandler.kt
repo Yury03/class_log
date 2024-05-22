@@ -1,8 +1,9 @@
 package com.example.server.handlers
 
+import com.example.data.database.dao.impl.KeysDaoImpl
 import com.example.data.database.dao.impl.UsersDaoImpl
-import com.example.domain.models.Addition
-import com.example.domain.models.LogIn
+import com.example.domain.models.AdditionPost
+import com.example.domain.models.LogInPost
 import com.example.domain.usecase.Authentication
 import com.example.domain.usecase.CreateNewUser
 import io.ktor.http.*
@@ -11,12 +12,13 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.util.pipeline.*
 
-private val impl = UsersDaoImpl()
+private val usersImpl = UsersDaoImpl()
+private val keysImpl = KeysDaoImpl()
 
-private val createNewUserUseCase = CreateNewUser(impl = impl)
-private val logInUseCase = Authentication(impl = impl)
+private val createNewUserUseCase = CreateNewUser(usersImpl = usersImpl)
+private val logInUseCase = Authentication(usersImpl = usersImpl, keysImpl = keysImpl)
 internal suspend fun PipelineContext<Unit, ApplicationCall>.addNewUserHandler() {
-    call.receive<Addition>().also { addition ->
+    call.receive<AdditionPost>().also { addition ->
         if (addition.serverKey == "my_private_key") { // ключ для создания пользователей
             createNewUserUseCase(addition)?.let {
                 call.respond(HttpStatusCode.Created)
@@ -27,10 +29,3 @@ internal suspend fun PipelineContext<Unit, ApplicationCall>.addNewUserHandler() 
     }
 }
 
-internal suspend fun PipelineContext<Unit, ApplicationCall>.logInHandler() {
-    call.receive<LogIn>().also { logIn ->
-        logInUseCase(logIn)?.let {
-            call.respond(HttpStatusCode.Created, message = it)
-        } ?: call.respond(HttpStatusCode.InternalServerError)
-    }
-}

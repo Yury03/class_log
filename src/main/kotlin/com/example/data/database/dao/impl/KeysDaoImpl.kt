@@ -16,6 +16,7 @@ class KeysDaoImpl : KeysDao {
         key = row[Keys.key],
         validity = row[Keys.validity],
     )
+
     private fun getValidity() = Date().time + 24 * 60 * 60 * 1000L * VALIDITY_DAYS
     private fun getNewKey() = UUID.randomUUID().toString()
     private fun getCurrentDate() = Date().time
@@ -43,8 +44,8 @@ class KeysDaoImpl : KeysDao {
             val currentDate = getCurrentDate()
             Keys.select {
                 (Keys.userId eq userId) and (Keys.validity greaterEq currentDate)
-            }.singleOrNull()?.let { key ->
-                mapToKey(key)
+            }.singleOrNull()?.let { keyRow ->
+                mapToKey(keyRow)
             }
         }
 
@@ -52,7 +53,18 @@ class KeysDaoImpl : KeysDao {
         TODO("Not yet implemented")
     }
 
+    /**
+     * Метод получает UserId по ключу авторизации, если ключ истек то возвращает null
+     * */
+    override suspend fun getUserIdByKeyString(key: String): Int? =
+        transaction {
+            Keys.select { (Keys.key eq key) }
+                .singleOrNull()?.let { keyRow ->
+                    keyRow[Keys.userId]
+                }
+        }
+
     private companion object {
-        const val VALIDITY_DAYS = 10 // срок действия ключа 10 дней
+        const val VALIDITY_DAYS = 100 // срок действия ключа 100 дней
     }
 }

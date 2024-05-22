@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
  * Ответ: List<Lesson>
  * */
 @Serializable
-data class GetSchedule(
+data class GetSchedulePost(
     val key: String,
     val date: Long,
 )

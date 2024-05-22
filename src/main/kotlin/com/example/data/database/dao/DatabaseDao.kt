@@ -9,6 +9,7 @@ interface DatabaseDao {
 
     interface LessonsDao {
         suspend fun allLessons(): List<Lesson>
+        suspend fun getLessonsByScheduleId(scheduleId: Int): List<Lesson>
 //        suspend fun lesson(id: Int): Lesson?
 //        suspend fun getLessonsByIdList(idList: List<Int>): List<Lesson>
 //        suspend fun addNewLesson(title: String, body: String): Lesson?
@@ -20,7 +21,7 @@ interface DatabaseDao {
         suspend fun allNotifications(): List<Notification>
     }
 
-    interface ScheduleDao {
+    interface SchedulesDao {
         suspend fun allSchedule(): List<Schedule>
         suspend fun getWeekScheduleByUserId(userId: Int): List<Schedule>
     }
@@ -47,6 +48,7 @@ interface DatabaseDao {
     interface KeysDao {
         suspend fun getKeyByUserId(userId: Int): Key?
         suspend fun deleteKey(userId: Int): Boolean
+        suspend fun getUserIdByKeyString(key: String): Int?
     }
 
 }
