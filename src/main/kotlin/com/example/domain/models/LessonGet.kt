@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 /**
  * UI Модель
+ * адрес /schedule
  * */
 @Serializable
 data class LessonGet(

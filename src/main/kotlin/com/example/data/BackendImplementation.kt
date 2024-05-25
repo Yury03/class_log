@@ -2,10 +2,11 @@ package com.example.data
 
 import com.example.data.database.dao.DatabaseDao.*
 import com.example.data.database.models.Lesson
+import com.example.data.mappers.LogItemMapper
 import com.example.domain.models.GetSchedulePost
 import com.example.domain.models.LogInPost
+import com.example.domain.models.LogItemGet
 
-// todo неправильные зависимости, добавить интерфейс [?]
 suspend fun authentication(
     usersImpl: UsersDao,
     keysImpl: KeysDao,
@@ -27,3 +28,27 @@ suspend fun getSchedule(
         }
     }
 
+suspend fun getLogByLesson(
+    schedulesImpl: SchedulesDao,
+    keysImpl: KeysDao,
+    lessonsImpl: LessonsDao,
+    attendancesImpl: AttendancesDao,
+    studentsImpl: StudentsDao,
+    data: GetSchedulePost,
+    lessonId: Int
+): List<LogItemGet> {
+    val lessonDbId = getSchedule(
+        schedulesImpl = schedulesImpl,
+        keysImpl = keysImpl,
+        lessonsImpl = lessonsImpl,
+        data = data
+    )!![lessonId].id
+    val attendanceList = attendancesImpl.getAttendanceListByLessonId(id = lessonDbId)
+    return attendanceList.map { attendance ->
+        val student = studentsImpl.getStudentById(attendance.studentId)
+        LogItemMapper.mapDataToLogItem(
+            attendance = attendance,
+            student = student
+        )
+    }
+}

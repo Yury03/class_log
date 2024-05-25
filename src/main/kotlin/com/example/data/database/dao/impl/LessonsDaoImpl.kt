@@ -30,36 +30,4 @@ class LessonsDaoImpl : LessonsDao {
         }.map { mapToLessons(it) }
     }
 
-//    override suspend fun lesson(id: Int): Lesson? = dbQuery {
-//        Lessons
-//            .select { Lessons.id eq id }
-//            .map(::resultRowToArticle)
-//            .singleOrNull()
-//    }
-
-//    override suspend fun getLessonsByIdList(idList: List<Int>): List<Lesson> {
-//        val lessonsList = mutableListOf<Lesson>()
-//        idList.forEach { id ->
-//            lesson(id)?.let { lessonsList.add(it) }
-//        }
-//        return lessonsList
-//    }
-//
-//    override suspend fun addNewLesson(title: String, body: String): Lesson? = dbQuery {
-//        val insertStatement = Lessons.insert {
-//            it[Lessons.theme] = title
-//        }
-//        insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToArticle)
-//    }
-//
-//    override suspend fun editLesson(id: Int, title: String, body: String): Boolean = dbQuery {
-//        Lessons.update({ Lessons.id eq id }) {
-//            it[Lessons.title] = title
-//        } > 0
-//    }
-//
-//    override suspend fun deleteLesson(id: Int) = dbQuery {
-//        Lessons.deleteWhere { Lessons.id eq id } > 0
-//    }
-
 }

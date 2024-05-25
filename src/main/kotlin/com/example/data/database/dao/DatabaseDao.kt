@@ -5,16 +5,12 @@ import com.example.data.database.models.*
 interface DatabaseDao {
     interface AttendancesDao {
         suspend fun allAttendances(): List<Attendance>
+        suspend fun getAttendanceListByLessonId(id: Int): List<Attendance>
     }
 
     interface LessonsDao {
         suspend fun allLessons(): List<Lesson>
         suspend fun getLessonsByScheduleId(scheduleId: Int): List<Lesson>
-//        suspend fun lesson(id: Int): Lesson?
-//        suspend fun getLessonsByIdList(idList: List<Int>): List<Lesson>
-//        suspend fun addNewLesson(title: String, body: String): Lesson?
-//        suspend fun editLesson(id: Int, title: String, body: String): Boolean
-//        suspend fun deleteLesson(id: Int): Boolean
     }
 
     interface NotificationsDao {
@@ -32,6 +28,7 @@ interface DatabaseDao {
 
     interface StudentsDao {
         suspend fun allStudents(): List<Student>
+        suspend fun getStudentById(id: Int): Student
     }
 
     interface SubjectsDao {

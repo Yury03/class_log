@@ -4,11 +4,11 @@ import kotlinx.serialization.Serializable
 
 /**
  * Данные для получения расписания
- * Адрес: /schedule
- * Ответ: List<Lesson>
+ * Адреса: /schedule, /schedule/id
+ * Ответ: List<Lesson>, List<>
  * */
 @Serializable
 data class GetSchedulePost(
     val key: String,
-    val date: Long,
+    val date: String, //dd-mm-yyyy
 )
