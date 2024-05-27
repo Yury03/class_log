@@ -7,6 +7,7 @@ data class Schedule(
     val id: Int,
     val weekDay: Int, //пн - 1, вс - 7
 )
+
 /**
  *  Связь с [Users]
  *  */

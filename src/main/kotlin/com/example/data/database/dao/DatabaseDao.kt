@@ -5,23 +5,21 @@ import com.example.data.database.models.*
 interface DatabaseDao {
     interface AttendancesDao {
         suspend fun allAttendances(): List<Attendance>
+        suspend fun getAttendanceListByLessonId(id: Int): List<Attendance>
     }
 
     interface LessonsDao {
         suspend fun allLessons(): List<Lesson>
-//        suspend fun lesson(id: Int): Lesson?
-//        suspend fun getLessonsByIdList(idList: List<Int>): List<Lesson>
-//        suspend fun addNewLesson(title: String, body: String): Lesson?
-//        suspend fun editLesson(id: Int, title: String, body: String): Boolean
-//        suspend fun deleteLesson(id: Int): Boolean
+        suspend fun getLessonsByScheduleId(scheduleId: Int): List<Lesson>
     }
 
     interface NotificationsDao {
         suspend fun allNotifications(): List<Notification>
     }
 
-    interface ScheduleDao {
+    interface SchedulesDao {
         suspend fun allSchedule(): List<Schedule>
+        suspend fun getWeekScheduleByUserId(userId: Int): List<Schedule>
     }
 
     interface SchoolClassesDao {
@@ -30,6 +28,7 @@ interface DatabaseDao {
 
     interface StudentsDao {
         suspend fun allStudents(): List<Student>
+        suspend fun getStudentById(id: Int): Student
     }
 
     interface SubjectsDao {
@@ -40,11 +39,13 @@ interface DatabaseDao {
         suspend fun allUsers(): List<User>
         suspend fun addNewUser(email: String, fullName: String, password: String, isClassTeacher: Boolean): User?
         suspend fun editPassword(id: Int, newPassword: String): Boolean
+        suspend fun getUserIdWithAuthentication(email: String, inputPassword: String): Int?
     }
 
     interface KeysDao {
-        suspend fun addNewKey(userId: Int): Key?
+        suspend fun getKeyByUserId(userId: Int): Key?
         suspend fun deleteKey(userId: Int): Boolean
+        suspend fun getUserIdByKeyString(key: String): Int?
     }
 
 }

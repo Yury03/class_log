@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * Ключ: "my_private_key"
  * */
 @Serializable
-data class Addition(
+data class AdditionPost(
     val email: String,
     val password: String,
     @SerialName("is_class_teacher") val isClassTeacher: Boolean,
